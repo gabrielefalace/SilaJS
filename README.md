@@ -1,2 +1,2 @@
-# smart-matchers
-matcher for JavaScript
+# Sila JS
+utilities for a better JavaScript coding
