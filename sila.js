@@ -41,7 +41,15 @@ function Predicate(element){
 
 	self.isNotIn = function(){
 		return !self.isIn(arguments);
-	}
+	};
+
+	self.isBetween = function (a, b) {
+		return self.element > a && self.element < b;
+	};
+
+	self.isNotBetween = function (a, b) {
+		return !self.isBetween(a, b)
+	};
 }
 
 var matching = matching || {
