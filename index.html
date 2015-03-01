@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Sila JS : keep your JavaScript DRY">
+    <meta name="description" content="Sila JS : write beautiful code">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/gabrielefalace/SilaJS">View on GitHub</a>
 
           <h1 id="project_title">Sila JS</h1>
-          <h2 id="project_tagline">keep your JavaScript DRY</h2>
+          <h2 id="project_tagline">write beautiful code</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/gabrielefalace/SilaJS/zipball/master">Download this project as a .zip file</a>
@@ -31,9 +31,18 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>This matchers library helps you stay DRY with matching logic used everywhere in the code</p>
+        <p>get this</p>
 
-<pre><code>var result = list.filter(matching.even);
+<pre><code>if(valuOf(x).isIn(3,8,12))
+    var result = list.filter(matching.even);
+</code></pre>
+
+<p>instead of this</p>
+
+<pre><code>if(x===3 || x===8 || x===12)
+    var result = list.filter(function(element){
+        return element % 2 === 0;
+    });
 </code></pre>
       </section>
     </div>
