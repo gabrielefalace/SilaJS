@@ -33,14 +33,14 @@
         <section id="main_content">
           <p>get this</p>
 
-<pre><code>if(valueOf(x).isIn(3, 8, 12)) {
+<pre><code>if (valueOf(x).isIn(3, 8, 12)) {
     var result = list.filter(matching.between(3, 25));
 }
 </code></pre>
 
 <p>instead of this</p>
 
-<pre><code>if(x === 3 || x === 8 || x === 12) {
+<pre><code>if (x === 3 || x === 8 || x === 12) {
     var result = list.filter(function(element) {
         return element &gt; 3 &amp;&amp; element &lt; 25;
     });
