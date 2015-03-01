@@ -22,6 +22,28 @@
 	SOFTWARE.
 */
 
+function valueOf(element){
+	return new Predicate(element);
+}
+
+function Predicate(element){
+	var self = this;
+	this.element = element;
+
+	self.isIn = function(){
+		for(var i=0; i<arguments.length; i++){
+			if(self.element === arguments[i]){
+				return true;
+			}
+		}
+		return false;
+	};
+
+	self.isNotIn = function(){
+		return !self.isIn(arguments);
+	}
+}
+
 var matching = matching || {
 			
 	// equals for both String or Number
