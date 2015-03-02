@@ -28,6 +28,7 @@
  * @returns {Predicate}
  */
 function valueOf(element){
+	console.log('creating predicate for element ' + element);
 	return new Predicate(element);
 }
 
