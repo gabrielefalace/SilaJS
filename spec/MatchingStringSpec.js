@@ -1,5 +1,4 @@
-
-describe('matching object', function () {
+describe('matching text object', function () {
 
     var stringArray;
 
@@ -23,9 +22,26 @@ describe('matching object', function () {
         };
     });
 
+    it('should contains', function () {
+        var expected = ['America', 'Seychelles', 'Mexico'];  
+        var actual = stringArray.filter((matching.contains)('e'));
 
-    it('should ... ', function () {
+        expect(actual.length).toBe(actual.length);
 
+        for (var i = 0; i < actual.length; i++) {
+            expect(actual[i]).toBe(expected[i]);   
+        }
+    });
+
+    it('should endsWith', function () {
+        var expected = ['Australia', 'California'];
+        var actual = stringArray.filter((matching.endsWith)('ia'));
+
+        expect(actual.length).toBe(actual.length);
+
+        for (var i = 0; i < actual.length; i++) {
+            expect(actual[i]).toBe(expected[i]);   
+        }
     });
 
 });
