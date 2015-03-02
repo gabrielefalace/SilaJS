@@ -23,7 +23,7 @@ describe('matching object', function () {
     });
 
 
-    it('should select only even elements', function () {
+    it('should select only odd elements', function () {
         var expected = [3, 7, 13];
         var actual = numberArray.filter(matching.odd);
 

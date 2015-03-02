@@ -12,8 +12,15 @@ describe('matching object', function () {
         expect(objectExists).toBe(true);
     });
 
-    it('should ... ', function () {
+    it('should starts with', function () {
+        var expected = ['Australia', 'America'];
+        var actual = stringArray.filter((matching.startsWith)('A'));
 
+        expect(actual.length).toBe(actual.length);
+
+        for (var i = 0; i < actual.length; i++) {
+            expect(actual[i]).toBe(expected[i]);
+        };
     });
 
 
