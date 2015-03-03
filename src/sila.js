@@ -23,7 +23,7 @@
 */
 
 /**
- *
+ * Constructs a Predicate
  * @param element
  * @returns {Predicate}
  */
@@ -81,6 +81,33 @@ function Predicate(element){
 	self.isNotBetween = function (a, b) {
 		return !self.isBetween(a, b)
 	};
+
+	/**
+	 *
+	 * @param prefix
+	 * @returns {boolean}
+	 */
+	self.startsWith = function (prefix) {
+		return self.element.indexOf(prefix) === 0;
+	};
+
+	/**
+	 *
+	 * @param suffix
+	 * @returns {boolean}
+	 */
+	self.endsWith = function (suffix) {
+		return self.element.indexOf(suffix) + suffix.length === element.length;
+	};
+
+	/**
+	 *
+	 * @param text
+	 * @returns {boolean}
+	 */
+	self.contains = function (text) {
+		return self.element.indexOf(text) >= 0;
+	}
 }
 
 var matching = matching || {
