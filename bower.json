@@ -1,5 +1,5 @@
 {
-  "name": "sila",
+  "name": "SilaJS",
   "version": "1.0.0",
   "main": "src/sila.js",
   "ignore": [
@@ -8,5 +8,4 @@
     "SpecRunner.html",
     "README.md"
   ]
-  
 }
