@@ -1,2 +1,2 @@
 # Sila JS
-utilities for a better JavaScript coding
+smart conditions and matchers for free
