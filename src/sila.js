@@ -46,12 +46,20 @@ function Predicate(element){
 	 * @returns {boolean}
 	 */
 	self.isIn = function(){
-		for(var i=0; i<arguments.length; i++){
-			if(self.element === arguments[i]){
-				return true;
+		var result = false;
+		if(arguments.length === 1 && Array.isArray(arguments[0])){
+			result = arguments[0].some(function (arrayElement) {
+				return self.element === arrayElement;
+			});
+		}
+		else {
+			for(var i=0; i<arguments.length; i++){
+				if(self.element === arguments[i]){
+					result = true;
+				}
 			}
 		}
-		return false;
+		return result;
 	};
 
 	/**
