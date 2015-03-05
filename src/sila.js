@@ -254,7 +254,7 @@ var matching = matching || {
 		 */
 	fieldStartsWith: function(fieldName, prefix){
 		return function(element) {
-			return matching.startsWith(prefix)(element[fieldName]);
+			return value(element[fieldName]).startsWith(prefix);
 		};
 	},
 
@@ -266,7 +266,7 @@ var matching = matching || {
 		 */
 	fieldEndsWith: function(fieldName, suffix){
 		return function(element) {
-			return matching.endsWith(suffix)(element[fieldName]);
+			return value(element[fieldName]).endsWith(suffix);
 		};
 	},
 
@@ -278,7 +278,15 @@ var matching = matching || {
 		 */
 	fieldContains: function(fieldName, substring){
 		return function(element){
-			return matching.contains(substring)(element[fieldName]);
+			return value(element[fieldName]).contains(substring);
+		};
+	},
+
+	fieldEqualsIgnoreCase: function(fieldName, fieldValue){
+		return function(element){
+			var actualFieldValue = element[fieldName].toLowerCase();
+			var requestedFieldValue = fieldValue.toLowerCase();
+			return actualFieldValue === requestedFieldValue;
 		};
 	}
 
