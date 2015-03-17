@@ -282,6 +282,11 @@ var matching = matching || {
 		};
 	},
 
+		/**
+		 * @param fieldName
+		 * @param fieldValue
+		 * @returns {Funcion} 
+		 */
 	fieldEqualsIgnoreCase: function(fieldName, fieldValue){
 		return function(element){
 			var actualFieldValue = element[fieldName].toLowerCase();
