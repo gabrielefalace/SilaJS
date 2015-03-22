@@ -27,268 +27,283 @@
  * @param element
  * @returns {Predicate}
  */
-var value = function(element){
-	console.log('creating predicate for element ' + element);
+var value = function(element) {
 	return new Predicate(element);
-};
-
-/**
- *
- * @param element
- * @constructor
- */
-function Predicate(element){
-	var self = this;
-	this.element = element;
 
 	/**
 	 *
-	 * @returns {boolean}
+	 * @param element
+	 * @constructor
 	 */
-	self.isIn = function(){
-		var result = false;
-		if(arguments.length === 1 && Array.isArray(arguments[0])){
-			result = arguments[0].some(function (arrayElement) {
-				return self.element === arrayElement;
-			});
-		}
-		else {
-			for(var i=0; i<arguments.length; i++){
-				if(self.element === arguments[i]){
-					result = true;
+	function Predicate(element) {
+		var self = this;
+		this.element = element;
+
+		/**
+		 *
+		 * @returns {boolean}
+		 */
+		self.isIn = function() {
+			var result = false;
+			if (arguments.length === 1 && Array.isArray(arguments[0])) {
+				result = arguments[0].some(function(arrayElement) {
+					return self.element === arrayElement;
+				});
+			}
+			else {
+				for (var i = 0; i < arguments.length; i++) {
+					if (self.element === arguments[i]) {
+						result = true;
+					}
 				}
 			}
-		}
-		return result;
-	};
-
-	/**
-	 *
-	 * @returns {boolean}
-	 */
-	self.isNotIn = function(){
-		return !self.isIn(arguments);
-	};
-
-	/**
-	 *
-	 * @param a
-	 * @param b
-	 * @returns {boolean}
-	 */
-	self.isBetween = function (a, b) {
-		return self.element > a && self.element < b;
-	};
-
-	/**
-	 *
-	 * @param a
-	 * @param b
-	 * @returns {boolean}
-	 */
-	self.isNotBetween = function (a, b) {
-		return !self.isBetween(a, b)
-	};
-
-	/**
-	 *
-	 * @param prefix
-	 * @returns {boolean}
-	 */
-	self.startsWith = function (prefix) {
-		return self.element.indexOf(prefix) === 0;
-	};
-
-	/**
-	 *
-	 * @param suffix
-	 * @returns {boolean}
-	 */
-	self.endsWith = function (suffix) {
-		return self.element.indexOf(suffix) + suffix.length === element.length;
-	};
-
-	/**
-	 *
-	 * @param text
-	 * @returns {boolean}
-	 */
-	self.contains = function (text) {
-		return self.element.indexOf(text) >= 0;
-	}
-}
-
-var matching = matching || {
+			return result;
+		};
 
 		/**
 		 *
-		 * @param param
-		 * @returns {Function}
-		 */
-	equalsTo: function(param){
-		return function(element){return element === param;};
-	},
-
-		/**
-		 *
-		 * @param element
 		 * @returns {boolean}
 		 */
-	odd: function(element){
-		return element % 2 === 1;
-	},
+		self.isNotIn = function() {
+			return !self.isIn(arguments);
+		};
 
 		/**
 		 *
-		 * @param element
+		 * @param a
+		 * @param b
 		 * @returns {boolean}
 		 */
-	even: function(element){
-		return element % 2 === 0;
-	},
-
-		/**
-		 *
-		 * @param param1
-		 * @param param2
-		 * @returns {Function}
-		 */
-	between: function(param1, param2){
-		return function(element){
-			return element >= param1 && element <= param2;
+		self.isBetween = function(a, b) {
+			return self.element > a && self.element < b;
 		};
-	},
 
 		/**
 		 *
-		 * @param param1
-		 * @param param2
-		 * @returns {Function}
+		 * @param a
+		 * @param b
+		 * @returns {boolean}
 		 */
-	strictlyBetween: function(param1, param2){
-		return function(element){
-			return element > param1 && element < param2;
+		self.isNotBetween = function(a, b) {
+			return !self.isBetween(a, b)
 		};
-	},
-
-		/**
-		 *
-		 * @param param
-		 * @returns {Function}
-		 */
-	greaterThan: function(param){
-		return function(element){ return element > param;};
-	},
-
-		/**
-		 *
-		 * @param param
-		 * @returns {Function}
-		 */
-	greaterEqualsTo: function(param){
-		return function(element){ return element >= param;};
-	},
-
-		/**
-		 *
-		 * @param param
-		 * @returns {Function}
-		 */
-	smallerThan: function(param){
-		return function(element){return element < param;};
-	},
-
-		/**
-		 *
-		 * @param param
-		 * @returns {Function}
-		 */
-	smallerEqualsTo: function(param){
-		return function(element){return element <= param;};
-	},
 
 		/**
 		 *
 		 * @param prefix
-		 * @returns {Function}
+		 * @returns {boolean}
 		 */
-	startsWith: function(prefix){
-		return function(element){ return element.indexOf(prefix)===0; };
-	},
-
-		/**
-		 *
-		 * @param substring
-		 * @returns {Function}
-		 */
-	contains: function(substring){
-		return function(element){ return element.indexOf(substring)>=0; };
-	},
+		self.startsWith = function(prefix) {
+			return self.element.indexOf(prefix) === 0;
+		};
 
 		/**
 		 *
 		 * @param suffix
-		 * @returns {Function}
+		 * @returns {boolean}
 		 */
-	endsWith: function(suffix){
-		return function(element){ return element.indexOf(suffix) + suffix.length === element.length; };
-	},
+		self.endsWith = function(suffix) {
+			return self.element.indexOf(suffix) + suffix.length === element.length;
+		};
 
 		/**
 		 *
-		 * @param fieldName
-		 * @param fieldValue
-		 * @returns {Function}
+		 * @param text
+		 * @returns {boolean}
 		 */
-	fieldEquals: function(fieldName, fieldValue){
-		return function(element){
+		self.contains = function(text) {
+			return self.element.indexOf(text) >= 0;
+		}
+	}
+};
+
+var matching = matching || {
+
+	/**
+	 *
+	 * @param param
+	 * @returns {Function}
+	 */
+	equalsTo: function(param) {
+		return function(element) {
+			return element === param;
+		};
+	},
+
+	/**
+	 *
+	 * @param element
+	 * @returns {boolean}
+	 */
+	odd: function(element) {
+		return element % 2 === 1;
+	},
+
+	/**
+	 *
+	 * @param element
+	 * @returns {boolean}
+	 */
+	even: function(element) {
+		return element % 2 === 0;
+	},
+
+	/**
+	 *
+	 * @param param1
+	 * @param param2
+	 * @returns {Function}
+	 */
+	between: function(param1, param2) {
+		return function(element) {
+			return element >= param1 && element <= param2;
+		};
+	},
+
+	/**
+	 *
+	 * @param param1
+	 * @param param2
+	 * @returns {Function}
+	 */
+	strictlyBetween: function(param1, param2) {
+		return function(element) {
+			return element > param1 && element < param2;
+		};
+	},
+
+	/**
+	 *
+	 * @param param
+	 * @returns {Function}
+	 */
+	greaterThan: function(param) {
+		return function(element) {
+			return element > param;
+		};
+	},
+
+	/**
+	 *
+	 * @param param
+	 * @returns {Function}
+	 */
+	greaterEqualsTo: function(param) {
+		return function(element) {
+			return element >= param;
+		};
+	},
+
+	/**
+	 *
+	 * @param param
+	 * @returns {Function}
+	 */
+	smallerThan: function(param) {
+		return function(element) {
+			return element < param;
+		};
+	},
+
+	/**
+	 *
+	 * @param param
+	 * @returns {Function}
+	 */
+	smallerEqualsTo: function(param) {
+		return function(element) {
+			return element <= param;
+		};
+	},
+
+	/**
+	 *
+	 * @param prefix
+	 * @returns {Function}
+	 */
+	startsWith: function(prefix) {
+		return function(element) {
+			return element.indexOf(prefix) === 0;
+		};
+	},
+
+	/**
+	 *
+	 * @param substring
+	 * @returns {Function}
+	 */
+	contains: function(substring) {
+		return function(element) {
+			return element.indexOf(substring) >= 0;
+		};
+	},
+
+	/**
+	 *
+	 * @param suffix
+	 * @returns {Function}
+	 */
+	endsWith: function(suffix) {
+		return function(element) {
+			return element.indexOf(suffix) + suffix.length === element.length;
+		};
+	},
+
+	/**
+	 *
+	 * @param fieldName
+	 * @param fieldValue
+	 * @returns {Function}
+	 */
+	fieldEquals: function(fieldName, fieldValue) {
+		return function(element) {
 			return element[fieldName] === fieldValue;
 		};
 	},
 
-		/**
-		 *
-		 * @param fieldName
-		 * @param prefix
-		 * @returns {Function}
-		 */
-	fieldStartsWith: function(fieldName, prefix){
+	/**
+	 *
+	 * @param fieldName
+	 * @param prefix
+	 * @returns {Function}
+	 */
+	fieldStartsWith: function(fieldName, prefix) {
 		return function(element) {
 			return value(element[fieldName]).startsWith(prefix);
 		};
 	},
 
-		/**
-		 *
-		 * @param fieldName
-		 * @param suffix
-		 * @returns {Function}
-		 */
-	fieldEndsWith: function(fieldName, suffix){
+	/**
+	 *
+	 * @param fieldName
+	 * @param suffix
+	 * @returns {Function}
+	 */
+	fieldEndsWith: function(fieldName, suffix) {
 		return function(element) {
 			return value(element[fieldName]).endsWith(suffix);
 		};
 	},
 
-		/**
-		 *
-		 * @param fieldName
-		 * @param substring
-		 * @returns {Function}
-		 */
-	fieldContains: function(fieldName, substring){
-		return function(element){
+	/**
+	 *
+	 * @param fieldName
+	 * @param substring
+	 * @returns {Function}
+	 */
+	fieldContains: function(fieldName, substring) {
+		return function(element) {
 			return value(element[fieldName]).contains(substring);
 		};
 	},
 
-		/**
-		 * @param fieldName
-		 * @param fieldValue
-		 * @returns {Funcion} 
-		 */
-	fieldEqualsIgnoreCase: function(fieldName, fieldValue){
-		return function(element){
+	/**
+	 * @param fieldName
+	 * @param fieldValue
+	 * @returns {Funcion}
+	 */
+	fieldEqualsIgnoreCase: function(fieldName, fieldValue) {
+		return function(element) {
 			var actualFieldValue = element[fieldName].toLowerCase();
 			var requestedFieldValue = fieldValue.toLowerCase();
 			return actualFieldValue === requestedFieldValue;
