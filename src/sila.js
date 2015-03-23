@@ -41,6 +41,23 @@ var value = function(element) {
 		this.element = element;
 
 		/**
+		 * Gives fals for NULL, UNDEFINED, NaN, EmptyString.
+		 * Empty object and arrays are true
+		 * @returns {boolean}
+		 */
+		self.isBlank = function(){
+			if(typeof self.element === 'string'){
+				self.element = self.element.trim();
+				return !self.element;
+			} else if(typeof self.element === 'object'){
+				return false;
+			} else {
+				return self.element === null || self.element === undefined || isNaN(self.element);
+			}
+			
+		}
+
+		/**
 		 *
 		 * @returns {boolean}
 		 */
