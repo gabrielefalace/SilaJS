@@ -3,6 +3,8 @@ describe('matching text object', function () {
     
     var blankString = '';
     
+    var blankString2 = '   ';
+    
     var zero = 0;
     
     var emptyObject = {};
@@ -16,6 +18,12 @@ describe('matching text object', function () {
         var outcome = value(blankString).isBlank();
         expect(outcome).toBeTruthy();
     });
+    
+    it('should give true for the longer blank string', function () {
+        var outcome = value(blankString2).isBlank();
+        expect(outcome).toBeTruthy();
+    });
+    
     
     it('should give false for the empty object', function () {
         var outcome = value(emptyObject).isBlank();

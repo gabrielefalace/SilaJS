@@ -23,7 +23,7 @@
 */
 
 /**
- * Constructs a Predicate
+ * Constructs a Predicate, to check conditions on the wrapped variable.
  * @param element
  * @returns {Predicate}
  */
@@ -41,21 +41,46 @@ var value = function(element) {
 		this.element = element;
 
 		/**
-		 * Gives fals for NULL, UNDEFINED, NaN, EmptyString.
+		 * Checks if two strings are the same, ignoring the case.
+		 * @returns {boolean}
+		 */
+		self.equalsIgnoreCase = function(other){
+			var otherL = other.toLowerCase();
+			var thisL = self.element.toLowerCase();
+			return otherL === thisL;
+		};
+
+		/**
+		 * Gives true for NULL, UNDEFINED, NaN, Empty String (of any length).
 		 * Empty object and arrays are true
 		 * @returns {boolean}
 		 */
 		self.isBlank = function(){
 			if(typeof self.element === 'string'){
-				self.element = self.element.trim();
-				return !self.element;
+				return self.element.trim() === '';
 			} else if(typeof self.element === 'object'){
 				return false;
 			} else {
 				return self.element === null || self.element === undefined || isNaN(self.element);
 			}
-			
-		}
+		};
+		
+		/**
+		 * Checks if the given object has only blank properties.
+		 * If a property is a Function it is skipped.
+		 * @returns {boolean}
+		 */ 
+		self.hasOnlyBlankProperties = function() {
+			for(var prop in self.element){
+				if(typeof self.element[prop] === 'function' || self.element[prop] instanceof Function){
+					continue;
+				}
+				if(!value(self.element[prop]).isBlank()){
+					return false;
+				}
+			}
+			return true;
+		};
 
 		/**
 		 *
