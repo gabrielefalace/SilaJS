@@ -1,4 +1,4 @@
-describe('Checker for blank variables', function () {
+describe('Checker for non blank variables', function () {
 
     
     var blankString = '';
@@ -15,34 +15,34 @@ describe('Checker for blank variables', function () {
 
     
     it('should give true for the blank string', function () {
-        var outcome = value(blankString).isBlank();
-        expect(outcome).toBeTruthy();
+        var outcome = value(blankString).isNotBlank();
+        expect(outcome).toBeFalsy();
     });
     
     it('should give true for the longer blank string', function () {
-        var outcome = value(blankString2).isBlank();
-        expect(outcome).toBeTruthy();
+        var outcome = value(blankString2).isNotBlank();
+        expect(outcome).toBeFalsy();
     });
     
     
     it('should give false for the empty object', function () {
-        var outcome = value(emptyObject).isBlank();
-        expect(outcome).toBeFalsy();
-    });
-    
-    it('should give false for zero', function () {
-        var outcome = value(zero).isBlank();
-        expect(outcome).toBeFalsy();
-    });
-    
-    it('should give true for NaN', function () {
-        var outcome = value(notNumber).isBlank();
+        var outcome = value(emptyObject).isNotBlank();
         expect(outcome).toBeTruthy();
     });
     
-    it('should give false for empty Array', function () {
-        var outcome = value(emptyArray).isBlank();
+    it('should give false for zero', function () {
+        var outcome = value(zero).isNotBlank();
+        expect(outcome).toBeTruthy();
+    });
+    
+    it('should give true for NaN', function () {
+        var outcome = value(notNumber).isNotBlank();
         expect(outcome).toBeFalsy();
+    });
+    
+    it('should give false for empty Array', function () {
+        var outcome = value(emptyArray).isNotBlank();
+        expect(outcome).toBeTruthy();
     });
 
 });

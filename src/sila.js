@@ -51,7 +51,7 @@ var value = function(element) {
 
 		/**
 		 * Gives true for NULL, UNDEFINED, NaN, Empty String (of any length).
-		 * Empty object and arrays are true
+		 * Empty object and empty arrays are not blank
 		 * @returns {boolean}
 		 */
 		self.isBlank = function(){
@@ -62,6 +62,15 @@ var value = function(element) {
 			} else {
 				return self.element === null || self.element === undefined || isNaN(self.element);
 			}
+		};
+		
+		/**
+		 * Tells if a variable holds some real value.
+		 * Empty object and empty arrays are not blank
+		 * @returns {boolean}
+		 */
+		self.isNotBlank = function(){
+			return !self.isBlank();
 		};
 		
 		/**

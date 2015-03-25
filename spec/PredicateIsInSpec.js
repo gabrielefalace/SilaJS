@@ -1,4 +1,4 @@
-describe('matching text object', function () {
+describe('Checker for variable values in a certain set', function () {
 
     var list;
     var present = 'Brazil';
