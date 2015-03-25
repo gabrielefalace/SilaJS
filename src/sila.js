@@ -28,7 +28,6 @@
  * @returns {Predicate}
  */
 var value = function(element) {
-	console.log('Predicate created');
 	return new Predicate(element);
 
 	/**
